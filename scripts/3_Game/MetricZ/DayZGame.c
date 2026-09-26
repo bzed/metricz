@@ -46,8 +46,10 @@ modded class DayZGame
 	*/
 	override void OnEvent(EventType eventTypeId, Param params)
 	{
-		// count all events on server
-		if (MetricZ_Config.IsLoaded() && !MetricZ_Config.Get().disabled_metrics.events)
+		// count all events on server, except ScriptLog: it is raised from inside
+		// ScriptModule.LoadScript(), and running script there makes the load fail
+		// (breaks the runtime compiled Expansion AI FSM)
+		if (eventTypeId != ScriptLogEventTypeID && MetricZ_Config.IsLoaded() && !MetricZ_Config.Get().disabled_metrics.events)
 			MetricZ_EventStats.Inc(eventTypeId);
 
 		super.OnEvent(eventTypeId, params);

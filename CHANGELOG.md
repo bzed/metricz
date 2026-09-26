@@ -21,6 +21,8 @@ Here is the updated changelog including the new changes.
 
 * possible NPE when collecting player network metrics #10 (@bzed)
 * metrics cleanup for Expansion vehicles on deletion #11 (@bzed)
+* Expansion AI "Invalid FSM": `ScriptLog` events are no longer counted in
+  `dayz_metricz_events_total`, handling them broke `ScriptModule.LoadScript()`
 
 ## [0.4.1][] - 2026-03-27
 
